@@ -23,12 +23,10 @@ function ContactForm({ onSubmit }) {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const { name, number } = e.target.elements;
-    const newContact = {
-      name: name.value,
-      number: number.value,
-    };
-    onSubmit(newContact);
+    onSubmit({
+      name,
+      number,
+    });
     setName('');
     setNumber('');
   };

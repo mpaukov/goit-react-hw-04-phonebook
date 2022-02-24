@@ -24,8 +24,8 @@ function App() {
       .sort((a, b) => a.name.localeCompare(b.name));
   };
 
-  const contactDelete = e => {
-    setContacts(state => state.filter(contact => contact.id !== e.target.id));
+  const contactDelete = id => {
+    setContacts(state => state.filter(contact => contact.id !== id));
   };
 
   const formSubmit = ({ name, number }) => {
@@ -55,8 +55,7 @@ function App() {
         value={filter}
       />
       <ContactList
-        onFilter={filteredContacts}
-        filter={filter}
+        filteredContacts={filteredContacts(filter)}
         onDelete={contactDelete}
       />
     </div>

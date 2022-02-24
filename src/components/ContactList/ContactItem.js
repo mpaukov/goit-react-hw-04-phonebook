@@ -1,7 +1,8 @@
+import PropTypes from 'prop-types';
 import s from './ContactList.module.css';
 
-const ContactItem = props => {
-  const { id, name, number } = props.contact;
+const ContactItem = ({ contact, onDelete }) => {
+  const { id, name, number } = contact;
   return (
     <li className={s.list__item}>
       <p className={s.text}>{name}</p>
@@ -10,12 +11,23 @@ const ContactItem = props => {
         className={s.button}
         type="button"
         id={id}
-        onClick={props.onDelete}
+        onClick={e => {
+          onDelete(e.target.id);
+        }}
       >
         Delete
       </button>
     </li>
   );
+};
+
+ContactItem.propTypes = {
+  contact: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    number: PropTypes.string.isRequired,
+  }),
+  onDelete: PropTypes.func.isRequired,
 };
 
 export { ContactItem };
